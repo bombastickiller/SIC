@@ -16,11 +16,17 @@ if not is_rpi:
     def main():
         from gpiozero import LED, Button
         from time import sleep
+        from leer_confg import velocidadDeParpadeo, leerConfiguracion
     
         led1 = LED(14)
-        led1.blink()
+        led1.blink(velocidadDeParpadeo, velocidadDeParpadeo)
+        
         while True:
-            sleep(1)
+            sleep(10)
+            leerConfiguracion()
+            print(f"Velocidad: {velocidadDeParpadeo}")
+            led1.blink(velocidadDeParpadeo, velocidadDeParpadeo)
+           
 if is_rpi:
     main()
 else:
